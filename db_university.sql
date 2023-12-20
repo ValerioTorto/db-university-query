@@ -21,3 +21,22 @@ where period = 'I semestre' and `year` = '1';
 -- Da quanti dipartimenti è composta l’università?
 select name 
 from departments d 
+
+-- Contare tutti gli insegnanti il cui cognome termina con la “E” (8)
+select surname
+from teachers t 
+where surname like '%E';
+
+-- Selezionare nome, cognome e codice fiscale di tutti gli studenti iscritti al Corso di Laurea in Economia, in ordine alfabetico
+select s.name, s.surname, s.fiscal_code, d.name
+from students s 
+join `degrees` d on s.degree_id  = d.id 
+where d.name = 'Corso di Laurea in Economia'
+order by s.name ASC;
+
+
+-- Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
+select d.name
+from `degrees` d
+join departments d2 on d.department_id  = d2.id 
+where d.`level` = 'magistrale' and d.department_id = 7;
